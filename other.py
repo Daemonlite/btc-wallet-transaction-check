@@ -1,10 +1,9 @@
-from flask import Flask, jsonify,request
+from flask import Flask, jsonify
 import requests
-
 from bs4 import BeautifulSoup
+import pandas as pd
 
 app = Flask(__name__)
-
 def get_crypto_deposits(url):
     response = requests.get(url)
     if response.status_code != 200:
@@ -29,13 +28,23 @@ def get_crypto_deposits(url):
         'usd_amount': usd_amount
     }
 
-@app.route('/received_funds',  methods=['POST'])
+@app.route('/received_funds', methods=['GET'])
 def scraper():
-    #add wallet address below
-    address = request.json['address']
-    url = f"https://blockchair.com/bitcoin/address/{address}"
-    amounts = get_crypto_deposits(url)
-    return jsonify(amounts)
+    # Load the spreadsheet (CSV file) using pandas
+    spreadsheet_path = 'wallets.csv'
+    df = pd.read_csv(spreadsheet_path)
+
+    crypto_data = {}  # To store the scraped data for each wallet address
+
+    for address in df['old_bitcoin_address']:
+        url = f"https://blockchair.com/bitcoin/address/{address}"
+        try:
+            amounts = get_crypto_deposits(url)
+            crypto_data[address] = amounts
+        except Exception as e:
+            crypto_data[address] = {'error': str(e)}
+
+    return jsonify(crypto_data)
 
 if __name__ == "__main__":
     app.run(debug=True)
