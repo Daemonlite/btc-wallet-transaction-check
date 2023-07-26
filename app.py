@@ -30,7 +30,8 @@ def get_crypto_deposits(url):
 
 @app.route('/scraper', methods=['GET'])
 def scraper():
-    address = '31iCTFexVS7NQbhPJkpSSxEf6c2LYuVUnk'
+    #add wallet address below
+    address = ''
     url = f"https://blockchair.com/bitcoin/address/{address}"
     amounts = get_crypto_deposits(url)
     return jsonify(amounts)
