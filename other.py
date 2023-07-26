@@ -2,8 +2,10 @@ from flask import Flask, jsonify
 import requests
 from bs4 import BeautifulSoup
 import pandas as pd
+import concurrent.futures
 
 app = Flask(__name__)
+
 def get_crypto_deposits(url):
     response = requests.get(url)
     if response.status_code != 200:
@@ -36,15 +38,24 @@ def scraper():
 
     crypto_data = {}  # To store the scraped data for each wallet address
 
-    for address in df['old_bitcoin_address']:
-        url = f"https://blockchair.com/bitcoin/address/{address}"
-        try:
-            amounts = get_crypto_deposits(url)
-            crypto_data[address] = amounts
-        except Exception as e:
-            crypto_data[address] = {'error': str(e)}
+    # Use ThreadPoolExecutor to perform concurrent web scraping
+    with concurrent.futures.ThreadPoolExecutor() as executor:
+        futures = {executor.submit(get_crypto_deposits, f"https://blockchair.com/bitcoin/address/{address}"): address for address in df['old_bitcoin_address']}
+
+        # Process the results as they complete
+        for future in concurrent.futures.as_completed(futures):
+            address = futures[future]
+            try:
+                amounts = future.result()
+                crypto_data[address] = amounts
+            except Exception as e:
+                crypto_data[address] = {'error': str(e)}
 
     return jsonify(crypto_data)
 
 if __name__ == "__main__":
     app.run(debug=True)
+
+
+
+
