@@ -1,7 +1,7 @@
 from flask import Flask, jsonify
 from blockcypher import get_address_full
 import json
-import pandas as pd
+
 
 # Function to calculate USD amount from Satoshi value and exchange rate
 def calculate_usd_amount(satoshi_amount, exchange_rate):
@@ -9,10 +9,15 @@ def calculate_usd_amount(satoshi_amount, exchange_rate):
 
 app = Flask(__name__)
 
-@app.route('/deposits')
+@app.route('/deposit')
 def get_deposits():
     try:
-        btc_addresses = read_btc_addresses_from_csv("wallets.csv")
+        # change this to a list of addresses
+        btc_addresses = [
+            '31shz3veznNJt2QDyYgxNtp45JwCZHtey7',
+            '324TfcS61q73U3Bk5BoN8QTF7Qb9ipQJtt',
+            '327phgtLdDkE3aT4Fe4paavaNy8i6SHCu4'
+        ]
         all_deposits = []
 
         for address in btc_addresses:
@@ -51,10 +56,6 @@ def get_deposits():
         }
         return jsonify(error_response), 500
 
-def read_btc_addresses_from_csv(file_path):
-    df = pd.read_csv(file_path)
-    btc_addresses = df['old_bitcoin_address'].str.strip().tolist()
-    return btc_addresses
 
 if __name__ == '__main__':
     app.run(debug=True)
