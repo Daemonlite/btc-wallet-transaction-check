@@ -25,11 +25,12 @@ def get_deposits():
                 transaction_id = tx['hash']
                 crypto_amount = sum([inp['output_value'] for inp in tx['inputs'] if address in inp['addresses']])
                 usd_amount = calculate_usd_amount(tx['total'], 0.000041)  # Replace '0.000041' with the actual exchange rate
-
+                date = tx['received']
                 deposit_data = {
                     'transaction_id': transaction_id,
                     'crypto_amount': crypto_amount,
                     'usd_amount': usd_amount,
+                    'date':date
                 }
                 deposits.append(deposit_data)
 
