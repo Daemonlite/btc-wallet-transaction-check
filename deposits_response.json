@@ -1,0 +1,62 @@
+[
+  {
+    "transaction_id": "ba325a9ed257757ef5084b50f711c825615fe6a89970c03580638bef52ac121e",
+    "crypto_amount": 13384,
+    "usd_amount": 42.048698
+  },
+  {
+    "transaction_id": "149a7f816edf159d06c2765b4b2c0dcc73dfa1dd48021f6a72b1a93cf6c41a01",
+    "crypto_amount": 0,
+    "usd_amount": 2875.456854
+  },
+  {
+    "transaction_id": "86ad6339a3c5e3d4c1d512ecd76aa60a20c9b87e7dd3b56256266b132711c50f",
+    "crypto_amount": 1825560,
+    "usd_amount": 4096.128001
+  },
+  {
+    "transaction_id": "e3d658c26c1c5a9b300378b594297020dfda9cc4c6c300ebbb3a147486862aa7",
+    "crypto_amount": 0,
+    "usd_amount": 102592.599197
+  },
+  {
+    "transaction_id": "0acfd2f4a8a5429c01517c24d63e2e6d658e4182baa5e3df16e2ab793d8e87b1",
+    "crypto_amount": 4699975,
+    "usd_amount": 4091.404719
+  },
+  {
+    "transaction_id": "10058958da3fb482e56cdde9ffc0b1e6d4b4fb482021eebbec5664ea71a2d35f",
+    "crypto_amount": 0,
+    "usd_amount": 375150.120704
+  },
+  {
+    "transaction_id": "1e59ce9286197f7e437ba0fce3f2c0ae7631d049bc3ddc47d83cb1f9fbae9db0",
+    "crypto_amount": 0,
+    "usd_amount": 4071.610411
+  },
+  {
+    "transaction_id": "e6aa692318c622bb166908f8ccf5efe42ecdbb764349345898397c0d585c30ce",
+    "crypto_amount": 0,
+    "usd_amount": 365035.216114
+  },
+  {
+    "transaction_id": "391cb3eab203e029af2e51a7a5edf69ff425bd747bfc5707c04042214640b24a",
+    "crypto_amount": 220019,
+    "usd_amount": 127.456864
+  },
+  {
+    "transaction_id": "b538365e74a8f6b057e9a1915f7a5563728ea1c9a83d1a620deca3c13671a92d",
+    "crypto_amount": 0,
+    "usd_amount": 287093.094641
+  },
+  {
+    "transaction_id": "8cf294f45620641d6cece6c959644e9d2837d349a57dcb7604e4a5e1ec4e0165",
+    "crypto_amount": 1189439,
+    "usd_amount": 3239.0
+  },
+  {
+    "transaction_id": "750debe9f7f20ef4f84dde04888883c0e1b744358951220b93b5fb75b863bdb0",
+    "crypto_amount": 0,
+    "usd_amount": 114199.507891
+  }
+]

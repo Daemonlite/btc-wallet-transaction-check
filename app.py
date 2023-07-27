@@ -1,3 +1,4 @@
+import csv
 from flask import Flask, jsonify,request
 import requests
 
@@ -29,6 +30,14 @@ def get_crypto_deposits(url):
         'usd_amount': usd_amount
     }
 
+def write_to_csv(data, filename):
+    # This function will write the data to a CSV file
+    with open(filename, 'w', newline='') as csvfile:
+        fieldnames = ['crypto_amount_btc', 'usd_amount']
+        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+
+        writer.writeheader()
+        writer.writerow(data)
 @app.route('/received_funds',  methods=['POST'])
 def scraper():
     #add wallet address below
